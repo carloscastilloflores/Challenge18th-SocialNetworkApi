@@ -35,3 +35,6 @@ DELETE to pull and remove a reaction by the reaction's reactionId value
 6. Create a walkthrough video that demonstrates the functionality of the API, including all of the acceptance criteria mentioned in the task.
 
 7. Submit your GitHub repository containing your application code and a high-quality README with a description of the project and a link to the walkthrough video.
+
+## Technologies Used 
+Express.js for routing, a MongoDB database, and the Mongoose ODM
