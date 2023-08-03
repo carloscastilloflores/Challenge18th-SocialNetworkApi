@@ -1,4 +1,5 @@
 const { User, Thought, Reaction } = require('../models');
+const router = require('../routes');
 
 module.exports = {
 //Get all users 
@@ -34,13 +35,13 @@ module.exports = {
 //     "email": "lernantino@gmail.com"
 //   }
     async createUser(req, res) {
-        try {
-            const user = await User.create(req.body); 
-            res.json(user); 
-        } catch(err) {
-            console.log(err); 
-            return res.status(500).json(err);
-        }
+    try {
+        const user = await User.create(req.body); 
+        res.json(user); 
+    } catch(err) {
+        console.log(err); 
+        return res.status(500).json(err);
+    }
     },
     async updateUser(req, res) {
         try {
@@ -76,8 +77,41 @@ module.exports = {
             res.status(500).json(err);
         }
     },
-};
+    async addFriend(req, res) {
+      console.log('You are adding an new friend to users list');
+      console.log(req.body);
 
+      try {
+        const user = await User.findOneAndUpdate(
+          { _id: req.params.ObjectId },
+          { $addToSet: { friend: req-body } }, //Pending
+          { runValidators: true, new: true }
+        );
+
+        if (!user) {
+          return res
+            .status(404)
+            .json({ message: 'No user found with that ID'});
+        }
+        res.json(user);
+      } catch (err) {
+        res.status(500).json(err);
+      }
+    },
+    async deleteFriend(req, res) {
+      try {
+        const user = await User.findOneAndDelete(
+          { _id: req.params.ObjectId },
+          { $pull: {friend: {ObjectId: req.params.ObjectId } } },
+          { runValidators: true, new: true }
+        )
+
+        res.json(user); 
+      } catch (err){
+        res.json(500).json(err);
+      }
+    },
+};
 
 
 
