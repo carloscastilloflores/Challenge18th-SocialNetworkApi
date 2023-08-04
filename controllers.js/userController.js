@@ -1,4 +1,6 @@
 const { User, Thought, Reaction } = require('../models');
+const { ObjectId } = require('mongoose').Types;
+
 const router = require('../routes');
 
 module.exports = {
@@ -102,7 +104,7 @@ module.exports = {
       try {
         const user = await User.findOneAndDelete(
           { _id: req.params.ObjectId },
-          { $pull: {friend: {ObjectId: req.params.ObjectId } } },
+          { $pull: {friends: {ObjectId: req.params.ObjectId } } },
           { runValidators: true, new: true }
         )
 
