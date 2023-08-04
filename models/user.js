@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose'); 
+const mongoose = require('mongoose');
 
 const userSchema = new Schema(
     {
@@ -33,6 +34,23 @@ userSchema.virtual('friendsCount').get(function () {
     return this.friends.length;
 });
 
-const User = model('user', userSchema);
+const User = mongoose.model('user', userSchema);
+
+User.find({})
+  .exec()
+  .then(async collection => {
+    if(collection.length === 0) {
+      try {
+        const insertedUsers = await User
+          .instertMany([
+            { username: 'annabanana', email: 'AnnaVillaseñor22@email.com' },
+            { username: 'frishakttmp', email: 'AnnaVillaseñor22@email.com' },
+          ]);
+        console.log('Insterted users:', insertedUsers);
+      } catch (insertedError) {
+        console.log(insertedError);
+      }
+    }
+  });
 
 module.exports = User; 
