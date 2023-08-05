@@ -1,16 +1,58 @@
-const usernames = [
-  'MarianaCas21',
-  'DiegoVigue11',
-  'ValentinaEliza',
-  'LuisMG',
-  'IsabellaRu33',
-  'CarlosCastillo',
-  'SofíaAng111',
-  'JoaquínCUU',
-  'Ximenikis12',
-  'MiguelEVA234',
-];
+// const usernames = [
+//   'MarianaCas21',
+//   'DiegoVigue11',
+//   'ValentinaEliza',
+//   'LuisMG',
+//   'IsabellaRu33',
+//   'CarlosCastillo',
+//   'SofíaAng111',
+//   'JoaquínCUU',
+//   'Ximenikis12',
+//   'MiguelEVA234',
+// ];
 
+const users = [
+  {
+    username: 'MarianaCas21', 
+    email: 'marianacas21@email.com', 
+  },
+  {
+    username: 'DiegoVigue11', 
+    email: 'dievigue22@email.com', 
+  },
+  {
+    username: 'ValentinaEliza', 
+    email: 'valenteliza@email.com', 
+  },
+  {
+    username: 'LuisMG', 
+    email: 'luismeg2@email.com', 
+  },
+  {
+    username: 'IsabellaRu33', 
+    email: 'isaruiz@email.com', 
+  },
+  {
+    username: 'CarlosCastillo', 
+    email: 'carlosflrs03@email.com', 
+  },
+  {
+    username: 'SofíaAng111', 
+    email: 'showa24@email.com', 
+  },
+  {
+    username: 'JoaquínCUU', 
+    email: 'joaquinquint@email.com', 
+  },
+  {
+    username: 'Ximenikis12', 
+    email: 'ximenikis_12@email.com', 
+  },
+  {
+    username: 'MiguelEVA234', 
+    email: 'algunlugar@email.com', 
+  },
+]
 const thoughts = [
   {
     username: 'MarianaCas21',
