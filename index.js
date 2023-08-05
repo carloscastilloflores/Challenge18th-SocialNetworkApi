@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 const activity = cwd.includes('Social-Network-Api')
-  ? cwd.split('Social-Network-Api')[1]
+  ? cwd.split('Social-Network-API')[1]
   : cwd;
 
   app.use(express.urlencoded({ extended: true }));
