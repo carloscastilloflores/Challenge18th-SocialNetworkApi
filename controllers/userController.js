@@ -1,13 +1,11 @@
 const { User, Thought } = require('../models');
-// const { ObjectId } = require('mongoose').Types;
-
-const router = require('../routes');
 
 module.exports = {
 //Get all users 
     async getUsers(req, res) {
         try {
-            const users = await User.find(); 
+            const users = await User.find()
+            .select('-__v')
             res.json(users); 
         } catch (err) {
             res.status(500).json(err);
@@ -18,8 +16,8 @@ module.exports = {
         try {
             const user = await User.findOne({_id: req.params._id})
                 .select('-__v')
-                .populate('thought')
-                .populate('friend');
+                .populate('thoughts')
+                .populate('friends');
                 //Not sure how this is syntaxed
             if (!user) {
                 return res.status(404).json({ message: 'No user with that ID'});
@@ -72,7 +70,7 @@ module.exports = {
             }
             
             await Thought.deleteMany({ _id: { $in: user.thoughts } }); 
-            await Reaction.deleteMany({ _id: {$in: user.thoughts.reaction} });
+            // await Reaction.deleteMany({ _id: {$in: user.thoughts.reaction} });
             //Pending, not sure this is the right syntax
             res.json({ message: 'User, thoughts and reactions deleted'})
         }   catch (err) {
@@ -86,7 +84,7 @@ module.exports = {
       try {
         const user = await User.findOneAndUpdate(
           { _id: req.params.userId },
-          { $addToSet: { friend: req-body } }, //Pending
+          { $addToSet: { friend: req.body } }, //Pending
           { runValidators: true, new: true }
         );
 
@@ -105,6 +103,7 @@ module.exports = {
         const user = await User.findOneAndDelete(
           { _id: req.params.userId },
           { $pull: {friends: {ObjectId: req.params.ObjectId } } },
+          // { $pull: { friends: req.params.friendId } }, 
           { runValidators: true, new: true }
         )
 
@@ -114,11 +113,3 @@ module.exports = {
       }
     },
 };
-
-
-
-
-
-// PUT to update a user by its _id
-
-// DELETE to remove user by its _id

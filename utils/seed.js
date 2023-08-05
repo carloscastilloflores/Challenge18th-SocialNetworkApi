@@ -5,14 +5,7 @@ const mongoose = require('mongoose');
 // Import your models
 const User = require('../models/User');
 const Thought = require('../models/Thought');
-// const Reaction = require('../models/Reaction');
 
-// connection.on('error', (err) => err);
-
-// connection.once('open', async () => {
-//   console.log('connected');
-//     let userCheck = await connection.db.listCollections({ })
-// })
 
 mongoose
   .connect('mongodb://127.0.0.1:27017/socialNetDB', {
@@ -142,11 +135,7 @@ const seedThoughts = [
   },
 ];
 
-// const reaction = [
-//   {
-//     reactionBody: ''
-//   }
-// ]
+
 
 const seedDb = async () => {
   await User.deleteMany({}); 
