@@ -18,18 +18,22 @@ const reactionSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      get: function () {
-        return this.toLocaleString(); // Corrected 'this.date' to 'this'
-      },
+      get: formatTime,
      },  
     },
     {
     toJSON: {
+      virtuals: true,
       getters: true,
     },
     id: false,
   }
 );
+
+function formatTime(time){
+  let formattedTime = new Date(time)
+  return formattedTime.toLocaleString()
+}
 
 // const Reaction = model('Reaction', reactionSchema); // Capitalized 'Reaction' for the model name
 

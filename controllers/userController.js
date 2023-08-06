@@ -1,4 +1,4 @@
-const { User, Thought } = require('../models');
+const { User , Thought } = require('../models');
 
 module.exports = {
 //Get all users 
@@ -14,11 +14,10 @@ module.exports = {
 // GET a single user by its _id and populated thought and friend data.
     async getSingleUser(req, res) {
         try {
-            const user = await User.findOne({_id: req.params._id})
+            const user = await User.findOne({ _id: req.params.userId })
                 .select('-__v')
-                .populate('thoughts')
-                .populate('friends');
-                //Not sure how this is syntaxed
+                .populate('thoughts')  // Populate the thoughts array with Thought objects
+                .populate('friends');  // Populate the friends array with User objects
             if (!user) {
                 return res.status(404).json({ message: 'No user with that ID'});
             }

@@ -12,9 +12,7 @@ const thoughtSchema = new Schema(
         createdAt: {
             type: Date, 
             default: Date.now,
-            get: function () {
-              return this.toLocaleString(); // Corrected 'this.date' to 'this'
-            },
+            get: formatTime,
         }, 
         username: { 
             type: String, 
@@ -24,6 +22,7 @@ const thoughtSchema = new Schema(
     },
     {
         toJSON: {
+          virtuals: true,
           getters: true,
         },
         id: false,
@@ -33,6 +32,11 @@ const thoughtSchema = new Schema(
 thoughtSchema.virtual('reactionCount').get(function () {
     return this.reactions.length;
 });
+
+function formatTime(time){
+  let formattedTime = new Date(time)
+  return formattedTime.toLocaleString()
+}
 
 const Thought = model('Thought', thoughtSchema);
 

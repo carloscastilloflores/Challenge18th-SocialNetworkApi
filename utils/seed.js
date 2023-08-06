@@ -21,42 +21,52 @@ const seedUsers = [
   {
     username: 'MarianaCas21', 
     email: 'marianacas21@email.com', 
+    thoughts: [],
   },
   {
     username: 'DiegoVigue11', 
     email: 'dievigue22@email.com', 
+    thoughts: [],
   },
   {
     username: 'ValentinaEliza', 
     email: 'valenteliza@email.com', 
+    thoughts: [],
   },
   {
     username: 'LuisMG', 
     email: 'luismeg2@email.com', 
+    thoughts: [],
   },
   {
     username: 'IsabellaRu33', 
     email: 'isaruiz@email.com', 
+    thoughts: [], 
   },
   {
     username: 'CarlosCastillo', 
     email: 'carlosflrs03@email.com', 
+    thoughts: [],
   },
   {
     username: 'SofíaAng111', 
     email: 'showa24@email.com', 
+    thoughts: [],
   },
   {
     username: 'JoaquínCUU', 
-    email: 'joaquinquint@email.com', 
+    email: 'joaquinquint@email.com',
+    thoughts: [],
   },
   {
     username: 'Ximenikis12', 
     email: 'ximenikis_12@email.com', 
+    thoughts: [],
   },
   {
     username: 'MiguelEVA234', 
     email: 'algunlugar@email.com', 
+    thoughts: [],
   },
 ]
 
@@ -144,6 +154,11 @@ const seedDb = async () => {
   await Thought.insertMany(seedThoughts);
 };
 
-seedDb().then(() => {
-  mongoose.connection.close();
-});
+seedDb()
+  .then(() => {
+    mongoose.connection.close();
+  })
+  .catch((err) => {
+    console.error(err);
+    mongoose.connection.close();
+  });
