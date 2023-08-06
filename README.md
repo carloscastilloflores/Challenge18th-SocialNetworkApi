@@ -1,40 +1,47 @@
-# Challenge18th-SocialNetworkApi
+# Challenge18th - Social Network API
 
-// To do's: 
-1. Set up MongoDB on your machine by following the installation guide provided in the project.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-2. Define the data models using Mongoose for the following entities:
-User: It should have fields like username, email, thoughts, and friends.
-Thought: It should have fields like thoughtText, createdAt, username, and reactions.
-Reaction (as a subdocument schema in the Thought model): It should have fields like reactionId, reactionBody, username, and createdAt.
 
-3. Create API routes using Express.js for the following functionalities:
-Users:
-GET all users
-GET a single user by its _id and populate thought and friend data
-POST a new user
-PUT to update a user by its _id
-DELETE to remove a user by its _id (Bonus: Remove associated thoughts when deleting a user)
-Friends:
-POST to add a new friend to a user's friend list
-DELETE to remove a friend from a user's friend list
-Thoughts:
-GET all thoughts
-GET a single thought by its _id
-POST to create a new thought (Don't forget to push the created thought's _id to the associated user's thoughts array field)
-PUT to update a thought by its _id
-DELETE to remove a thought by its _id
-Reactions (as part of Thoughts):
-POST to create a reaction stored in a single thought's reactions array field
-DELETE to pull and remove a reaction by the reaction's reactionId value
+* [User-Story](#User-Story)
+* [Description](#description)
+* [Technologies Used](#Technologies-used)
+* [Acceptance Criteria ](#Acceptance-Criteria)
+* [Walkthrough Video](Walkthrough-Video)
+* [Usage Information](#Usage-information)
+* [License](#license)
+* [Repository](#Repository)
 
-4. Ensure the application uses the Mongoose package to connect to the MongoDB database.
+## User Story 
+As a social media startup, I want an API for my social network that uses a NoSQL database so that my website can handle large amounts of unstructured data.
 
-5. Format queried timestamps properly.
+## Description 
+This is a backend API for a social network web application built using NoSQL (MongoDB) to handle large amounts of unstructured data. The API allows users to share their thoughts, react to friends' thoughts, and manage their friend list.
 
-6. Create a walkthrough video that demonstrates the functionality of the API, including all of the acceptance criteria mentioned in the task.
+## Technologies Used
+- Express.js
+- MongoDB
+- Mongoose ODM
 
-7. Submit your GitHub repository containing your application code and a high-quality README with a description of the project and a link to the walkthrough video.
+## Acceptance Criteria 
+1. When the application is invoked, the server starts, and the Mongoose models are synced to the MongoDB database.
+2. GET routes for users and thoughts display data in a formatted JSON in Insomnia.
+3. POST, PUT, and DELETE routes for users and thoughts are successfully tested in Insomnia.
+4. POST and DELETE routes for reactions to thoughts are successfully tested in Insomnia.
+5. Users can be added and removed from a user's friend list using the appropriate routes in Insomnia.
 
-## Technologies Used 
-Express.js for routing, a MongoDB database, and the Mongoose ODM
+## Walkthrough Video 
+Click [here](https://drive.google.com/file/d/1ICae3K2VQW1PTKL9O_hZwHuIWIF4P86G/view?usp=share_link) to go to the Deployed Application. 
+
+## Usage Information
+To run the API, follow these steps:
+
+Clone the repository to your local machine.
+Install the required dependencies using npm install.
+Start the server using npm start.
+
+## Licence 
+This application is covered under the MIT License
+
+## Repository
+Click [here](https://github.com/carloscastilloflores/Challenge18th-SocialNetworkApi.git) to go to the GitHub Repository. 
