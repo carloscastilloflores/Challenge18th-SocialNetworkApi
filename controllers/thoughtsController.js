@@ -14,7 +14,7 @@ module.exports = {
   
   async getSingleThought(req, res) {
     try { 
-      const thought = await Thought.findOne({ _id: req.params.ObjectId})
+      const thought = await Thought.findOne({ _id: req.params.thoughtId})
         .select('-__v'); 
 
       if (!thought) {
@@ -39,7 +39,7 @@ module.exports = {
   async updateThought(req, res) {
     try {
         const thought = await Thought.findOneAndUpdate(
-            {_id: req.params.ObjectId}, 
+            {_id: req.params.thoughtId}, 
             { $set: req.body },
             { runvalidators: true, new: true}
         );
@@ -55,7 +55,7 @@ module.exports = {
   },
   async deleteThought(req, res) {
     try {
-        const thought = await Thought.findOneAndDelete({ _id: req.params.ObjectId});
+        const thought = await Thought.findOneAndDelete({ _id: req.params.thoughtId});
 
         if (!thought) {
             return res.status(404).json({ message: 'No thought with that ID' });
@@ -69,7 +69,7 @@ module.exports = {
   async createReaction(req, res) {
     try {
       const reaction = await Thought.findOneAndUpdate(
-        { _id: req.params.ObjectId },
+        { _id: req.params.thoughtId },
         { $addToSet: { reaction: req.body } }, //Pending
         { runValidators: true, new: true }
       )
@@ -86,7 +86,7 @@ module.exports = {
   async deleteReaction (req, res) {
     try {
       const reaction = await Thought.findOneAndDelete(
-        { _id: req.params.ObjectId },
+        { _id: req.params.thoughtId },
         { $pull: { reactions: { reactionId: req.params.reactionId } } },
         { runValidators: true, new: true }
       );

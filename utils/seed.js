@@ -151,7 +151,20 @@ const seedDb = async () => {
   await User.deleteMany({}); 
   await User.insertMany(seedUsers);
   await Thought.deleteMany({}); 
+  // const thoughts = await Thought.insertMany(seedThoughts);
   await Thought.insertMany(seedThoughts);
+  
+    // Loop through the seedThoughts array
+    for (const thought of seedThoughts) {
+      // Find the user matching the thought's username
+      const user = await User.findOne({ username: thought.username });
+  
+      // If the user is found, add the thought to their thoughts array
+      if (user) {
+        user.thoughts.push(thought._id);
+        await user.save();
+      }
+    }
 };
 
 seedDb()
@@ -162,3 +175,5 @@ seedDb()
     console.error(err);
     mongoose.connection.close();
   });
+
+  

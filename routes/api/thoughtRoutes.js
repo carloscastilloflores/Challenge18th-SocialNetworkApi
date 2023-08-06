@@ -11,11 +11,11 @@ const {
 
 // /api/thoughts
 router.route('/')
-.get(getThoughts)
-.post(createThought);
+.get(getThoughts);
 
 // /api/thoughts/:thoughtsId
 router.route('/:thoughtId')
+.post(createThought)
 .get(getSingleThought)
 .put(updateThought)
 .delete(deleteThought);

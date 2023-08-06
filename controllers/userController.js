@@ -46,7 +46,7 @@ module.exports = {
         try {
             const user = await User.findOneAndUpdate(
                 // verify that the syntax is correct, i want to update email and password
-                {_id: req.params.ObjectId}, 
+                {_id: req.params.userId}, 
                 { $set: req.body },
                 { runvalidators: true, new: true}
             );
@@ -62,7 +62,7 @@ module.exports = {
     },
     async deleteUser(req, res) {
         try {
-            const user = await User.findOneAndDelete({ _id: req.params.ObjectId});
+            const user = await User.findOneAndDelete({ _id: req.params.userId});
 
             if (!user) {
                 return res.status(404).json({ message: 'No user with that ID' });
@@ -97,6 +97,7 @@ module.exports = {
         res.status(500).json(err);
       }
     },
+  
     async deleteFriend(req, res) {
       try {
         const user = await User.findOneAndDelete(
